@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* Define dark mode variant using class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  /* Ensure smooth scrolling and prevent horizontal overflow */
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+    /* Prevent layout shift during theme transitions */
+    color-scheme: light dark;
+  }
+  
+  /* Base body styles with optimized transitions */
+  body {
+    @apply bg-zinc-50 text-zinc-900;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Smooth theme transition without causing repaints */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Prevent overflow issues */
+    overflow-x: hidden;
+  }
+
+  /* Dark mode body styles */
+  .dark body {
+    @apply bg-zinc-950 text-zinc-100;
+  }
+
+  /* Optimize font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-100 dark:bg-zinc-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full hover:bg-indigo-500 transition-colors;
+  }
+
+  /* Prevent cumulative layout shift (CLS) */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Optimize image loading to prevent layout shifts */
+  img, video, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+/* Performance optimizations for animations */
+@layer utilities {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .reduce-motion {
+    @media (prefers-reduced-motion: reduce) {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Gradient text with safe fallback for browsers that don't support bg-clip:text */
+  .hero-gradient-text {
+    background-image: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    color: #818cf8;
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-gradient-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  /* Navbar auto-drop animation for desktop links on initial load */
+  @keyframes nav-auto-drop {
+    0% {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-auto-drop .nav-auto-drop-item {
+    opacity: 0;
+    transform: translateY(-12px);
+    animation: nav-auto-drop 920ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
