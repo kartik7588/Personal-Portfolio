@@ -1,5 +1,13 @@
 # Animated Portfolio
 
+---
+
+##  Live Preview
+
+🔗 https://kartik7588.vercel.app
+
+---
+
 A modern developer portfolio built with React, Vite, and Tailwind CSS. It features a 3D hero scene, smooth motion effects, a dark/light theme, and polished sections for projects, skills, and experience.
 
 **Features**
