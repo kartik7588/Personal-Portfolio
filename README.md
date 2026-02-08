@@ -4,7 +4,9 @@
 
 ##  Live Preview
 
-🔗 https://kartik7588.vercel.app
+
+🔗 <a href="https://kartik-portfolio.vercel.app" target="_blank">Visit Live Website</a>
+
 
 ---
 
