@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description: "A powerful, client-side PDF manipulation tool for merging, splitting, and compressing documents.",
     longDescription: "PDF-King is a comprehensive tool designed to provide users with privacy-focused PDF operations. Built with React and specialized PDF libraries, it performs all processing directly in the browser, ensuring user data never leaves their device. Features include drag-and-drop support, real-time processing feedback, and an intuitive user interface.",
     tags: ["React", "JavaScript", "PDF-Lib", "TailwindCSS"],
-    link: "https://kartik7588.github.io/PDF-King/",
+    link: "https://pdf-king.vercel.app/",
     github: "https://github.com/kartik7588/PDF-King",
     image: "/pdf-king.png",
   },
