@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import kartikImg from "../../uploads/kartik.png";
 import { useScrollReveal, useParallax, useImageReveal } from "../../utils/useAnimations";
 import { fadeInLeft, fadeInRight, staggerContainer, staggerItem, easings } from "../../utils/animations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 /**
  * About Section with Cinematic Animations
@@ -113,11 +114,17 @@ export const About = () => {
               variants={staggerItem}
               className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white mb-8 leading-tight"
             >
-              I build systems that are{" "}
+              <AnimatedText
+                text="I build systems that are"
+                className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white inline"
+                weightConfig={{ min: 300, max: 900, default: 300 }}
+              />{" "}
               <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-600">
-                  predictable and scalable.
-                </span>
+                <AnimatedText
+                  text="predictable and scalable."
+                  className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-600 inline-block"
+                  weightConfig={{ min: 300, max: 900, default: 300 }}
+                />
                 <motion.span
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}

@@ -3,6 +3,7 @@ import { ExternalLink, Github, X } from "lucide-react";
 import { projects, Project } from "@/data/portfolio";
 import { useState } from "react";
 import { fadeUp, staggerContainer, staggerItem, easings } from "../../utils/animations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 /**
  * Projects Section with Advanced Animations
@@ -49,7 +50,11 @@ export const Projects = () => {
             transition={{ duration: 0.8, ease: easings.expoOut }}
             className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4"
           >
-            Featured Projects
+            <AnimatedText
+              text="Featured Projects"
+              className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h2>
           
           <motion.div
@@ -208,7 +213,11 @@ const ProjectCard = ({
             className="text-xl font-bold text-zinc-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors"
             whileHover={{ x: 4 }}
           >
-            {project.title}
+            <AnimatedText
+              text={project.title}
+              className="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h3>
 
           <p className="text-zinc-600 dark:text-zinc-400 mb-6 line-clamp-2 leading-relaxed">
@@ -334,7 +343,11 @@ const ProjectModal = ({
             variants={staggerItem}
             className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white mb-6"
           >
-            {project.title}
+            <AnimatedText
+              text={project.title}
+              className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h3>
           
           {/* Grid layout */}

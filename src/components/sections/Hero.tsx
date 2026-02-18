@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { lazy, Suspense } from "react";
 import resume from "../../uploads/resume.pdf";
-import { useSplitText } from "../../utils/useAnimations";
-import { wordReveal, easings, hoverGlow, hoverScale } from "../../utils/animations";
+import { easings } from "../../utils/animations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 // Lazy load 3D scene with proper error boundary handling
 const HeroScene = lazy(() => 
@@ -17,16 +17,13 @@ const SceneLoader = () => (
 
 /**
  * Hero Section with Cinematic Animations
- * - Word-by-word title reveal with 3D rotation
+ * - Interactive font weight animation on title hover
  * - Smooth fade-in for description
  * - Staggered button appearance with hover effects
  * - Floating scroll indicator
  * - GPU-accelerated transforms
  */
 export const Hero = () => {
-  const titleWords = useSplitText("Building The");
-  const gradientWords = useSplitText("Future Web");
-
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-zinc-50 dark:bg-zinc-950">
       {/* 3D Canvas Background - Lower z-index and positioned below */}
@@ -54,47 +51,33 @@ export const Hero = () => {
       
       {/* Content container - Higher z-index to sit above canvas */}
       <div className="relative z-20 text-center px-4 w-full max-w-5xl mx-auto pointer-events-auto">
-        {/* Animated title with word-by-word reveal */}
-        <div className="mb-6 overflow-hidden pr-4 pb-2">
-          <h1 className="text-5xl md:text-8xl font-black tracking-tighter">
-            <div className="mb-2 text-zinc-900 dark:text-white">
-              {titleWords.map((word, index) => (
-                <motion.span
-                  key={index}
-                  variants={wordReveal}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{
-                    delay: 0.3 + index * 0.1,
-                    duration: 0.8,
-                    ease: easings.expoOut,
-                  }}
-                  className="inline-block mr-4"
-                  style={{ willChange: "transform, opacity" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
-            <div className="block">
-              {gradientWords.map((word, index) => (
-                <motion.span
-                  key={index}
-                  variants={wordReveal}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{
-                    delay: 0.5 + titleWords.length * 0.1 + index * 0.1,
-                    duration: 0.8,
-                    ease: easings.expoOut,
-                  }}
-                  className="inline-block mr-4 hero-gradient-text"
-                  style={{ willChange: "transform, opacity" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
+        {/* Animated title with interactive hover effect */}
+        <div className="mb-6 overflow-visible pr-4 pb-2">
+          <h1 className="text-5xl md:text-8xl tracking-tighter">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: easings.expoOut }}
+              className="mb-2 text-zinc-900 dark:text-white"
+            >
+              <AnimatedText
+                text="Building The"
+                className="text-5xl md:text-8xl tracking-tighter"
+                weightConfig={{ min: 300, max: 900, default: 300 }}
+              />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: easings.expoOut }}
+              className="block"
+            >
+              <AnimatedText
+                text="Future Web"
+                className="text-5xl md:text-8xl tracking-tighter hero-gradient-text"
+                weightConfig={{ min: 300, max: 900, default: 300 }}
+              />
+            </motion.div>
           </h1>
         </div>
 

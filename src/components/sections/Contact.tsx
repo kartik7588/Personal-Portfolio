@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, Mail, MapPin, Phone, CheckCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 import { fadeUp, staggerContainer, staggerItem, easings } from "../../utils/animations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 /**
  * Contact Section with Micro-interactions
@@ -170,7 +171,11 @@ export const Contact = () => {
             transition={{ duration: 0.8, ease: easings.expoOut }}
             className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4"
           >
-            Get In Touch
+            <AnimatedText
+              text="Get In Touch"
+              className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h2>
 
           <motion.div
@@ -194,7 +199,11 @@ export const Contact = () => {
               variants={staggerItem}
               className="text-4xl font-bold text-zinc-900 dark:text-white mb-6"
             >
-              Let's Connect
+              <AnimatedText
+                text="Let's Connect"
+                className="text-4xl font-bold text-zinc-900 dark:text-white"
+                weightConfig={{ min: 300, max: 900, default: 300 }}
+              />
             </motion.h3>
             <motion.p
               variants={staggerItem}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/portfolio";
 import { staggerContainer, staggerItem, fadeUp, easings } from "../../utils/animations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 /**
  * Skills Section with Professional Animations
@@ -37,7 +38,11 @@ export const Skills = () => {
             transition={{ duration: 0.8, ease: easings.expoOut }}
             className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4"
           >
-            Technical Expertise
+            <AnimatedText
+              text="Technical Expertise"
+              className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h2>
 
           <motion.div

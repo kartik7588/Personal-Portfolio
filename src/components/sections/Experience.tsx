@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { experiences } from "@/data/portfolio";
 import { fadeUp, staggerContainer, staggerItem, easings } from "../../utils/animations";
 import { useScrollReveal } from "../../utils/useAnimations";
+import { AnimatedText } from "../ui/AnimatedText";
 
 /**
  * Experience Section with Timeline Animations
@@ -46,7 +47,11 @@ export const Experience = () => {
             transition={{ duration: 0.8, ease: easings.expoOut }}
             className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4"
           >
-            Professional Experience
+            <AnimatedText
+              text="Professional Experience"
+              className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white"
+              weightConfig={{ min: 300, max: 900, default: 300 }}
+            />
           </motion.h2>
 
           <motion.div
