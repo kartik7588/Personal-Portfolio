@@ -3,6 +3,7 @@ import { experiences } from "@/data/portfolio";
 import { fadeUp, staggerContainer, staggerItem, easings } from "../../utils/animations";
 import { useScrollReveal } from "../../utils/useAnimations";
 import { AnimatedText } from "../ui/AnimatedText";
+import { AnimatedButton } from "../ui/AnimatedButton";
 
 /**
  * Experience Section with Timeline Animations
@@ -203,7 +204,7 @@ export const Experience = () => {
               href="#contact"
               className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-bold shadow-lg shadow-indigo-500/25 inline-flex items-center gap-2"
             >
-              Let's Work Together
+              <AnimatedButton>Let's Work Together</AnimatedButton>
               <motion.span
                 animate={{ x: [0, 4, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}

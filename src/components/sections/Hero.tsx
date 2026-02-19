@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import resume from "../../uploads/resume.pdf";
 import { easings } from "../../utils/animations";
 import { AnimatedText } from "../ui/AnimatedText";
+import { AnimatedButton } from "../ui/AnimatedButton";
 
 // Lazy load 3D scene with proper error boundary handling
 const HeroScene = lazy(() => 
@@ -121,7 +122,7 @@ export const Hero = () => {
             className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-bold transition-all shadow-lg shadow-indigo-500/25 flex items-center gap-2 group"
             style={{ willChange: "transform" }}
           >
-            View Projects
+            <AnimatedButton>View Projects</AnimatedButton>
             <motion.span
               animate={{ x: [0, 5, 0] }}
               transition={{ 
@@ -152,7 +153,7 @@ export const Hero = () => {
             className="px-8 py-4 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full font-bold transition-all flex items-center gap-2"
             style={{ willChange: "transform" }}
           >
-            Resume
+            <AnimatedButton>Resume</AnimatedButton>
           </motion.a>
         </motion.div>
       </div>

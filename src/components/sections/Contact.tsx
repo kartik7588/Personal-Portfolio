@@ -4,6 +4,7 @@ import { Send, Mail, MapPin, Phone, CheckCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 import { fadeUp, staggerContainer, staggerItem, easings } from "../../utils/animations";
 import { AnimatedText } from "../ui/AnimatedText";
+import { AnimatedButton } from "../ui/AnimatedButton";
 
 /**
  * Contact Section with Micro-interactions
@@ -499,7 +500,7 @@ export const Contact = () => {
                         </motion.span>
                       ) : (
                         <>
-                          Send Message
+                          <AnimatedButton>Send Message</AnimatedButton>
                           <motion.span
                             className="inline-block"
                             whileHover={{ x: 4 }}

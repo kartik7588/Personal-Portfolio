@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { NavLink3D } from "./NavLink3D";
+import { AnimatedButton } from "./AnimatedButton";
+import { AnimatedIcon } from "./AnimatedIcon";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -103,9 +106,11 @@ export const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
           onClick={(e) => handleNavLinkClick(e, "#")}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600"
+          className="text-2xl font-bold"
         >
-          KARTIK.DEV
+          <AnimatedButton className="bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-purple-600">
+            KARTIK.DEV
+          </AnimatedButton>
         </motion.a>
 
         {/* Desktop Menu */}
@@ -116,7 +121,7 @@ export const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
           )}
         >
           {navLinks.map((link, i) => (
-            <a
+            <NavLink3D
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavLinkClick(e, link.href)}
@@ -124,7 +129,7 @@ export const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
               style={{ animationDelay: `${120 + i * 70}ms` }}
             >
               {link.name}
-            </a>
+            </NavLink3D>
           ))}
 
           <button
@@ -189,14 +194,24 @@ export const Footer = () => {
     <footer className="bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div>
-          <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">Kartik Jangid</h3>
-          <p className="text-zinc-500 dark:text-zinc-400">Full-stack Developer & CS Engineer</p>
+          <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">
+            <AnimatedButton>Kartik Jangid</AnimatedButton>
+          </h3>
+          <p className="text-zinc-500 dark:text-zinc-400">
+            <AnimatedButton>Full-stack Developer & CS Engineer</AnimatedButton>
+          </p>
         </div>
         
         <div className="flex space-x-6">
-          <a href="https://github.com" className="text-zinc-400 hover:text-indigo-500 transition-colors"><Github size={20} /></a>
-          <a href="https://linkedin.com" className="text-zinc-400 hover:text-indigo-500 transition-colors"><Linkedin size={20} /></a>
-          <a href="mailto:hello@example.com" className="text-zinc-400 hover:text-indigo-500 transition-colors"><Mail size={20} /></a>
+          <AnimatedIcon href="https://github.com" className="text-zinc-400 hover:text-indigo-500 transition-colors">
+            <Github size={20} />
+          </AnimatedIcon>
+          <AnimatedIcon href="https://linkedin.com" className="text-zinc-400 hover:text-indigo-500 transition-colors">
+            <Linkedin size={20} />
+          </AnimatedIcon>
+          <AnimatedIcon href="mailto:hello@example.com" className="text-zinc-400 hover:text-indigo-500 transition-colors">
+            <Mail size={20} />
+          </AnimatedIcon>
         </div>
 
         <p className="text-zinc-400 text-sm">

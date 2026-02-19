@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { skills } from "@/data/portfolio";
 import { staggerContainer, staggerItem, fadeUp, easings } from "../../utils/animations";
 import { AnimatedText } from "../ui/AnimatedText";
+import { AnimatedButton } from "../ui/AnimatedButton";
 
 /**
  * Skills Section with Professional Animations
@@ -218,7 +219,7 @@ export const Skills = () => {
             whileTap={{ scale: 0.95 }}
           >
             <span className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-bold shadow-lg shadow-indigo-500/25">
-              View All Projects →
+              <AnimatedButton>View All Projects →</AnimatedButton>
             </span>
           </motion.a>
         </motion.div>
