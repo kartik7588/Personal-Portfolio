@@ -45,8 +45,10 @@ export const About = () => {
               <img
                 src={kartikImg}
                 alt="Kartik Jangid"
+                width="400"
+                height="500"
                 className="w-full h-full object-cover transition-all duration-500"
-                style={{ willChange: "transform" }}
+                loading="eager"
               />
               
               {/* Gradient overlay on hover */}

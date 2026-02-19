@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, memo } from "react";
 import gsap from "gsap";
 
 interface FontWeightConfig {
@@ -45,6 +45,8 @@ const setupTextHover = (
 
   const letters = container.querySelectorAll("span");
   const { min, max, default: base } = weightConfig;
+  let rafId: number | null = null;
+  let lastMouseX = 0;
 
   const animateLetters = (
     letter: Element,
@@ -61,9 +63,9 @@ const setupTextHover = (
     });
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const updateLetters = () => {
     const { left } = container.getBoundingClientRect();
-    const mouseX = e.clientX - left;
+    const mouseX = lastMouseX - left;
 
     letters.forEach((letter) => {
       const { left: l, width: w } = letter.getBoundingClientRect();
@@ -74,19 +76,38 @@ const setupTextHover = (
     });
   };
 
+  const handleMouseMove = (e: MouseEvent) => {
+    lastMouseX = e.clientX;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(() => {
+        updateLetters();
+        rafId = null;
+      });
+    }
+  };
+
   const handleMouseLeave = () => {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
     letters.forEach((letter) => {
       gsap.killTweensOf(letter);
       animateLetters(letter, base, 0.3);
     });
   };
 
-  container.addEventListener("mousemove", handleMouseMove);
+  container.addEventListener("mousemove", handleMouseMove, { passive: true });
   container.addEventListener("mouseleave", handleMouseLeave);
 
   return () => {
     container.removeEventListener("mousemove", handleMouseMove);
     container.removeEventListener("mouseleave", handleMouseLeave);
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
   };
 };
 
@@ -95,11 +116,11 @@ const setupTextHover = (
  * Displays text with interactive font weight animation on hover
  * Letters change weight based on mouse proximity using exponential falloff
  */
-export const AnimatedText = ({
+export const AnimatedText = memo<AnimatedTextProps>(({
   text,
   className = "",
   weightConfig = DEFAULT_WEIGHT_CONFIG,
-}: AnimatedTextProps) => {
+}) => {
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,4 +136,6 @@ export const AnimatedText = ({
       {renderText(text, "inline-block", weightConfig.default)}
     </div>
   );
-};
+});
+
+AnimatedText.displayName = 'AnimatedText';

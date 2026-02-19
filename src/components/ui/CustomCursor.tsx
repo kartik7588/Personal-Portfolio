@@ -1,13 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 export const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const rafId = useRef<number | null>(null);
+  const lastPos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    let ticking = false;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      lastPos.current = { x: e.clientX, y: e.clientY };
+
+      if (!ticking) {
+        rafId.current = requestAnimationFrame(() => {
+          setMousePosition(lastPos.current);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -24,12 +36,15 @@ export const CustomCursor = () => {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
   }, []);
 

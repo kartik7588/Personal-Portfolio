@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Preconnect to improve performance -->
+    <!-- DNS Prefetch & Preconnect for third-party resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    
+    <!-- Preload critical assets for LCP optimization -->
+    <link rel="preload" as="image" href="/kartik2.png" type="image/png" fetchpriority="high" />
     
     <title>Kartik Jangid | Full-stack Developer & CS Engineer</title>
     <meta name="description" content="Professional portfolio of Kartik Jangid, a Full-stack Developer specializing in React, Node.js, and building high-performance web applications." />

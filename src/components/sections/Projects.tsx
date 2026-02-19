@@ -175,9 +175,12 @@ const ProjectCard = ({
           <motion.img
             src={project.image}
             alt={project.title}
+            width="600"
+            height="338"
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.15 }}
             transition={{ duration: 0.6, ease: easings.power3Out }}
+            loading="lazy"
           />
 
           {/* Gradient overlay on hover */}
@@ -309,7 +312,10 @@ const ProjectModal = ({
           <img
             src={project.image}
             alt={project.title}
+            width="800"
+            height="450"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </motion.div>
 

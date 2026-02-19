@@ -1,4 +1,4 @@
-import { useState, ReactNode } from 'react';
+import { useState, ReactNode, memo } from 'react';
 
 interface AnimatedIconProps {
   children: ReactNode;
@@ -6,7 +6,7 @@ interface AnimatedIconProps {
   className?: string;
 }
 
-export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ children, href, className = '' }) => {
+export const AnimatedIcon = memo<AnimatedIconProps>(({ children, href, className = '' }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -45,4 +45,6 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ children, href, clas
       </span>
     </a>
   );
-};
+});
+
+AnimatedIcon.displayName = 'AnimatedIcon';

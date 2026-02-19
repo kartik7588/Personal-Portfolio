@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 interface AnimatedButtonProps {
   children: string;
   className?: string;
 }
 
-export const AnimatedButton: React.FC<AnimatedButtonProps> = ({ children, className = '' }) => {
+export const AnimatedButton = memo<AnimatedButtonProps>(({ children, className = '' }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -46,4 +46,6 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({ children, classN
       </span>
     </span>
   );
-};
+});
+
+AnimatedButton.displayName = 'AnimatedButton';

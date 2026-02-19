@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface NavLink3DProps {
   href: string;
@@ -14,7 +14,7 @@ interface NavLink3DProps {
  * - No 3D effects, no rotation, no magnetic tracking
  * - Pure translateY transform
  */
-export const NavLink3D = ({ href, children, onClick, className = "", style = {} }: NavLink3DProps) => {
+export const NavLink3D = memo<NavLink3DProps>(({ href, children, onClick, className = "", style = {} }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -60,4 +60,6 @@ export const NavLink3D = ({ href, children, onClick, className = "", style = {} 
       </span>
     </a>
   );
-};
+});
+
+NavLink3D.displayName = 'NavLink3D';
